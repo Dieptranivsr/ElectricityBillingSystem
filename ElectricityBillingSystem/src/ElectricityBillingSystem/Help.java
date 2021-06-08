@@ -54,11 +54,13 @@ public class Help extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText("Phần mềm quản lý hóa đơn tiền điện được xây dựng dựa trên IDE của NetBean phiên bản mới nhất.\nĐể biết thêm thông tin chi tiết, vui lòng liên hệ nhóm Bài tập lớn số 4, mã lớp ,môn học lập\ntrình Nâng cao.");
+        jTextArea1.setEditable(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jTextArea2.setText("Phiên bản sản phẩm: 1.0.2\nJava: 1.8.0_281; Java HotSpot(TM) 64-Bit Server VM 25.281-b09\nRuntime: Java(TM) SE Runtime Environment 1.8.0_281-b09\nSystem: Windows 10 version 10.0 running on amd64; Cp1252; en_US (nb)");
+        jTextArea2.setEditable(false);
         jScrollPane2.setViewportView(jTextArea2);
 
         jButton1.setText("Quay lại");
@@ -76,9 +78,9 @@ public class Help extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(342, 342, 342)
                         .addComponent(jLabel1))
@@ -98,7 +100,7 @@ public class Help extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jButton1)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();

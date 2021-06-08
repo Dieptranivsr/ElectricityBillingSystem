@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
+import jdk.nashorn.internal.runtime.regexp.joni.Syntax;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -128,6 +129,14 @@ public class Electrical extends javax.swing.JFrame {
         return mathang1;
     }
     
+    private static String getMathang()
+    {
+        String mathang=null;
+        String time = java.time.LocalDate.now().toString();
+        mathang = time.substring(0,4)+time.substring(8);
+        return mathang;
+    }
+    
     private String getThang(String thang)
     {
         if(thang.equals("Jan"))
@@ -169,6 +178,20 @@ public class Electrical extends javax.swing.JFrame {
             return false;
         }
         return true;
+    }
+    
+    private static String getNameFile(String pathString) {
+        int countFinal = 0;
+        char temp;
+        for (int i = 0; i < pathString.length(); i++) {
+
+            temp = pathString.charAt(i);
+            if (temp == '/')
+            {
+                countFinal = i;
+            }
+        }
+        return pathString.substring(++countFinal);
     }
     
     /** Creates new form Electrical */
@@ -347,7 +370,7 @@ public class Electrical extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/d19dc4eb.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/filter.png"))); // NOI18N
         jLabel6.setText("Lọc hiển thị");
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/excel.png"))); // NOI18N
@@ -395,17 +418,15 @@ public class Electrical extends javax.swing.JFrame {
                                 .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(51, 51, 51))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2)
-                                    .addComponent(jButton1)
-                                    .addComponent(jButton3))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton7)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jButton6))
-                                    .addComponent(jButton4))))))
+                                    .addComponent(jButton4)
+                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -626,7 +647,7 @@ public class Electrical extends javax.swing.JFrame {
             int a=JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn xóa thông tin số của tài khoản này hay không?","Chọn lựa",JOptionPane.YES_NO_OPTION);
             if (a != 0)
             {
-                JOptionPane.showMessageDialog(null, "Bạn đã chắc chắn muốn xóa thông tin !");
+                JOptionPane.showMessageDialog(null, "Bạn chưa xóa thông tin !");
             }
             else{
                 pstmt.executeUpdate();
@@ -665,7 +686,7 @@ public class Electrical extends javax.swing.JFrame {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-        
+        System.out.println("Hello");
         try
         {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -870,82 +891,117 @@ public class Electrical extends javax.swing.JFrame {
         if(result == JFileChooser.APPROVE_OPTION)
         {
             String excelPath = jf.getSelectedFile().getAbsolutePath();
-            File excelFile = new File(excelPath);
-            FileInputStream fls = null;
-            try {
-                fls = new FileInputStream(excelFile);
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Electrical.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
+            String tenfile = null;
+            //tenfile = getNameFile(excelPath);
+            int a=JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn cập nhật chỉ số điện theo file excel này ko ?" ,"Chọn lựa",JOptionPane.YES_NO_OPTION);
+            if (a == 0)
+            {
+                File excelFile = new File(excelPath);
+                //System.out.println("excelFile "+excelFile);
+                FileInputStream fls = null;
+                try {
+                    fls = new FileInputStream(excelFile);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Electrical.class.getName()).log(Level.SEVERE, null, ex);
+                }
         
-            // Get workbook
+                // Get workbook
         
-            XSSFWorkbook workbook = null;
-            try {
-                workbook = new XSSFWorkbook(fls);
-            } catch (IOException ex) {
-                Logger.getLogger(Electrical.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            XSSFSheet sheet = workbook.getSheetAt(0);
+                XSSFWorkbook workbook = null;
+                try {
+                    workbook = new XSSFWorkbook(fls);
+                } catch (IOException ex) {
+                    Logger.getLogger(Electrical.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                XSSFSheet sheet = workbook.getSheetAt(0);
         
-            Iterator<Row> rowIt = sheet.iterator();
+                Iterator<Row> rowIt = sheet.iterator();
         
-            String chisocu = null;
-            String mathang = null;
-            int i = 0;
-            Vector<String> v = new Vector<>();
-            while (rowIt.hasNext()) {
-                Row row = rowIt.next();
-                Iterator<Cell> cellIterator = row.cellIterator();
-                //System.out.println("row.getCell(1)" + row.getCell(1));
-                while (cellIterator.hasNext()) {
+                String chisocu = null;
+                String mathang = null;
+                int i = 0;
+                Vector<String> v = new Vector<>();
+                while (rowIt.hasNext()) {
+                    Row row = rowIt.next();
+                    Iterator<Cell> cellIterator = row.cellIterator();
+                    while (cellIterator.hasNext()) {
                     
-                    Cell cell = cellIterator.next();
-                    System.out.println(cell.toString().replace(".0", "") + " ");
-                    if(i>0)
-                        v.add(cell.toString().replace(".0", ""));
-                }
-                if (i==0)
-                {
-                    i++;
-                    continue;
-                }
-                //System.out.println(v.get(0)+v.get(1)+v.get(2)+v.get(3));
-                //System.out.println(v.get(0)+" "+v.get(1)+" "+v.get(2));
-                chisocu = getChisocu("0"+v.get(1), v.get(0));
-                //System.out.println(chisocu);
-                try{
-                    Connection con=ConnectionProvider.getCon();
-                    String query = "INSERT INTO chisodien(mathang,ma,chisocu,chisomoi) VALUES(?,?,?,?)";
-                    PreparedStatement pstmt = con.prepareStatement(query);
-                    pstmt.setString(1,v.get(0));
-                    pstmt.setString(2,"0"+v.get(1));
-                    pstmt.setString(3,chisocu);
-                    pstmt.setString(4,v.get(2));
+                        Cell cell = cellIterator.next();
+                        //System.out.println(cell.toString().replace(".0", "") + " ");
+                        if(i>0)
+                            v.add(cell.toString().replace(".0", ""));
+                    }
+                    if (i==0)
+                    {
+                        i++;
+                        continue;
+                    }
+                    //System.out.println(v.get(0)+v.get(1)+v.get(2)+v.get(3));
+                    //System.out.println(v.get(0)+" "+v.get(1)+" "+v.get(2));
+                    chisocu = getChisocu("0"+v.get(1), v.get(0));
+                    //System.out.println(chisocu);
+                    
+                    if(xacnhanChisodien("0"+v.get(1), v.get(0))==false)
+                    {
+                        try{
+                            Connection con=ConnectionProvider.getCon();
+                            String query = "INSERT INTO chisodien(mathang,ma,chisocu,chisomoi) VALUES(?,?,?,?)";
+                            PreparedStatement pstmt = con.prepareStatement(query);
+                            pstmt.setString(1,v.get(0));
+                            pstmt.setString(2,"0"+v.get(1));
+                            pstmt.setString(3,chisocu);
+                            pstmt.setString(4,v.get(2));
             
-                    pstmt.executeUpdate();
-                    v.removeAllElements();
+                            pstmt.executeUpdate();
+                            v.removeAllElements();
+                        }
+                        catch(Exception e)
+                        {
+                            JOptionPane.showMessageDialog(null, "Thông tin này đã bị lỗi chỉ số điện của mã "+"0"+v.get(1)+" ở tháng "+v.get(0).substring(4)+" năm " + v.get(0).substring(0,4) + "!");
+                        }
+                    }
+                    else
+                    {
+                        try{
+                            Connection con=ConnectionProvider.getCon();
+                            String query = "UPDATE chisodien SET mathang=?,ma=?,chisomoi=? WHERE ma ='"+"0"+v.get(1)+"' AND mathang='"+v.get(0)+"'";
+                            PreparedStatement pstmt = con.prepareStatement(query);
+                            pstmt.setString(1,v.get(0));
+                            pstmt.setString(2,"0"+v.get(1));
+                            pstmt.setString(3,v.get(2));
+                    
+                            pstmt.executeUpdate();
+                            v.removeAllElements();
+                        }
+                        catch(Exception e)
+                        {
+                            JOptionPane.showMessageDialog(null, "Thông tin này đã bị lỗi chỉ số điện của mã "+"0"+v.get(1)+" ở tháng "+v.get(0).substring(4)+" năm " + v.get(0).substring(0,4) + "!");
+                        }
+                    }
+                    
+                    //System.out.println("");
                 }
-                catch(Exception e)
-                {
-                    JOptionPane.showMessageDialog(null, "Thông tin này đã thực sự tồn tại hoặc bị lỗi nhập dữ liệu. Xin vui lòng thử nhập lại thông tin !");
+                try {
+                    workbook.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(Electrical.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                System.out.println("");
-            }
-            try {
-                workbook.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Electrical.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                fls.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Electrical.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    fls.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(Electrical.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                setVisible(false);
+                new Electrical(admin1).setVisible(true);
             }
             
-            setVisible(false);
-            new Electrical(admin1).setVisible(true);
+            else
+            {        
+                //System.out.println("file excel "+tenfile);
+                setVisible(false);
+                new Electrical(admin1).setVisible(true);
+            } 
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 

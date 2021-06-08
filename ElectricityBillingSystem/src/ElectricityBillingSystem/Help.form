@@ -27,9 +27,9 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" min="-2" pref="695" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="752" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jScrollPane1" pref="752" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -56,7 +56,7 @@
               <Component id="jScrollPane2" min="-2" pref="157" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="42" max="32767" attributes="0"/>
+              <EmptySpace pref="59" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,8 +78,13 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Ph&#x1ea7;n m&#x1ec1;m qu&#x1ea3;n l&#xfd; h&#xf3;a &#x111;&#x1a1;n ti&#x1ec1;n &#x111;i&#x1ec7;n &#x111;&#x1b0;&#x1ee3;c x&#xe2;y d&#x1ef1;ng d&#x1ef1;a tr&#xea;n IDE c&#x1ee7;a NetBean phi&#xea;n b&#x1ea3;n m&#x1edb;i nh&#x1ea5;t.&#xa;&#x110;&#x1ec3; bi&#x1ebf;t th&#xea;m th&#xf4;ng tin chi ti&#x1ebf;t, vui l&#xf2;ng li&#xea;n h&#x1ec7; nh&#xf3;m B&#xe0;i t&#x1ead;p l&#x1edb;n s&#x1ed1; 4, m&#xe3; l&#x1edb;p ,m&#xf4;n h&#x1ecd;c l&#x1ead;p&#xa;tr&#xec;nh N&#xe2;ng cao."/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;Ph&#x1ea7;n m&#x1ec1;m qu&#x1ea3;n l&#xfd; h&#xf3;a &#x111;&#x1a1;n ti&#x1ec1;n &#x111;i&#x1ec7;n &#x111;&#x1b0;&#x1ee3;c x&#xe2;y d&#x1ef1;ng d&#x1ef1;a tr&#xea;n IDE c&#x1ee7;a NetBean phi&#xea;n b&#x1ea3;n m&#x1edb;i nh&#x1ea5;t.\n&#x110;&#x1ec3; bi&#x1ebf;t th&#xea;m th&#xf4;ng tin chi ti&#x1ebf;t, vui l&#xf2;ng li&#xea;n h&#x1ec7; nh&#xf3;m B&#xe0;i t&#x1ead;p l&#x1edb;n s&#x1ed1; 4, m&#xe3; l&#x1edb;p ,m&#xf4;n h&#x1ecd;c l&#x1ead;p\ntr&#xec;nh N&#xe2;ng cao.&quot;" type="code"/>
+            </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextArea1.setEditable(false);"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -94,8 +99,13 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Phi&#xea;n b&#x1ea3;n s&#x1ea3;n ph&#x1ea9;m: 1.0.2&#xa;Java: 1.8.0_281; Java HotSpot(TM) 64-Bit Server VM 25.281-b09&#xa;Runtime: Java(TM) SE Runtime Environment 1.8.0_281-b09&#xa;System: Windows 10 version 10.0 running on amd64; Cp1252; en_US (nb)"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;Phi&#xea;n b&#x1ea3;n s&#x1ea3;n ph&#x1ea9;m: 1.0.2\nJava: 1.8.0_281; Java HotSpot(TM) 64-Bit Server VM 25.281-b09\nRuntime: Java(TM) SE Runtime Environment 1.8.0_281-b09\nSystem: Windows 10 version 10.0 running on amd64; Cp1252; en_US (nb)&quot;" type="code"/>
+            </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTextArea2.setEditable(false);"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
