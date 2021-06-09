@@ -32,7 +32,7 @@ import javax.print.SimpleDoc;
 
 /**
  *
- * @author Dieptuantran
+ * @author Nhom4
  */
 public class GenerateBill {
     private BaseFont bfBold;
