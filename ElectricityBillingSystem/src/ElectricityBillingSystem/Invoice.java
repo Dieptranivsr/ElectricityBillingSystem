@@ -24,7 +24,7 @@ import java.util.Calendar;
 import javax.swing.JSpinner;
 /**
  *
- * @author Dieptuantran
+ * @author Nhom4
  */
 public class Invoice extends javax.swing.JFrame {
     public static String admin1="Member";
