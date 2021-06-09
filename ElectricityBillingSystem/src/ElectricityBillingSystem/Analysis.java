@@ -33,7 +33,7 @@ import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
- * @author Dieptuantran
+ * @author Nhom4
  */
 public class Analysis extends javax.swing.JFrame {
     public static String admin1="Member";
