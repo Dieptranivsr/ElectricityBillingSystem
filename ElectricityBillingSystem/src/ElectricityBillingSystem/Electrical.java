@@ -34,7 +34,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 /**
  *
- * @author Dieptuantran
+ * @author Nhom4
  */
 
 public class Electrical extends javax.swing.JFrame {    
