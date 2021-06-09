@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Nh
+ * @author Nhom4
  */
 public class Account extends javax.swing.JFrame {
 
