@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Dieptuantran
+ * @author Nhom4
  */
 public class Help extends javax.swing.JFrame {
 
