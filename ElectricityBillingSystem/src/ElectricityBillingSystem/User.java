@@ -22,7 +22,7 @@ import javax.print.attribute.standard.Copies;
 
 /**
  *
- * @author Dieptuantran
+ * @author Nhom4
  */
 public class User extends javax.swing.JFrame {
     public String timkiem;
