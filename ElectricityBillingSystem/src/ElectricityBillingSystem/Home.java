@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Dieptuantran
+ * @author Nhom4
  */
 public class Home extends javax.swing.JFrame {
 public int z=0;
